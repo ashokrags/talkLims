@@ -15,14 +15,14 @@ from openpyxl import load_workbook
 
 from talkLims.models import ProjectInfo, RequestInfo, PullInfo
 from talkLims.platesetup.platesetup_download.platesetupdownload import PlatesetupDownloadForm
-from talkLims.settings import EXCELFILES_FOLDER
+from talkLims.settings import EXCELFILES_FOLDER, TEMPLATE_DIRS
 from talkLims.utils.jinja2config import environment
 
 
 @csrf_exempt
 def initiate_request(request):
     # if this is a POST request we need to process the form data
-    env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+    env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         outForm = PlatesetupDownloadForm(request.POST)
@@ -42,12 +42,12 @@ def initiate_request(request):
             print request.session['outForm']
             ##db_params(outForm_dict)
             ##outForm_dict['excel'] = download_excel(request)
-            env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+            env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
             template = env.get_template('plate_setup/plate_setup_download.html')
             return HttpResponse(template.render(valData=outForm_dict))
     else:
         myForm = PlatesetupDownloadForm()
-        env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+        env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
         template = env.get_template('plate_setup/plate_setup_download_init.html')
         return HttpResponse(template.render(form=myForm))
 

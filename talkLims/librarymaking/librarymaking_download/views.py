@@ -14,14 +14,14 @@ from jinja2 import FileSystemLoader
 from openpyxl import load_workbook
 
 from talkLims.librarymaking.librarymaking_download.librarymaking_download import LibraryMakingDownloadForm
-from talkLims.settings import EXCELFILES_FOLDER
+from talkLims.settings import EXCELFILES_FOLDER, TEMPLATE_DIRS
 from talkLims.utils.jinja2config import environment
 
 
 @csrf_exempt
 def initiate_request(request):
     # if this is a POST request we need to process the form data
-    env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+    env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         outForm = LibraryMakingDownloadForm(request.POST)
@@ -37,12 +37,12 @@ def initiate_request(request):
             request.session['outForm'] = outForm_dict
             print request.session['outForm']
 
-            env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+            env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
             template = env.get_template('library_making/librarymaking_download.html')
             return HttpResponse(template.render(valData=outForm_dict))
     else:
         myForm = LibraryMakingDownloadForm()
-        env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+        env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
         template = env.get_template('library_making/librarymaking_download_init.html')
         return HttpResponse(template.render(form=myForm))
 

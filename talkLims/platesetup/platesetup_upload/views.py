@@ -12,13 +12,14 @@ from openpyxl import load_workbook
 
 from talkLims.models import PlateSetup
 from talkLims.platesetup.platesetup_upload.platesetupupload import PlateSetupUploadForm
+from talkLims.settings import TEMPLATE_DIRS
 from talkLims.utils.jinja2config import environment
 
 
 @csrf_exempt
 def initiate_request(request):
     # if this is a POST request we need to process the form data
-    env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+    env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
     if request.method == 'POST':
         print request.FILES.keys()
         # create a form instance and populate it with data from the request:
@@ -32,12 +33,12 @@ def initiate_request(request):
         print request.FILES['manifest_file']
         update_platessetup_db(request.FILES['manifest_file'])
 
-        env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+        env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
         template = env.get_template('base.html')
         return HttpResponse(template.render())
     else:
         myForm = PlateSetupUploadForm()
-        env = environment(loader=FileSystemLoader('/Users/ashok/PycharmProjects/talkLims/templates'))
+        env = environment(loader=FileSystemLoader(TEMPLATE_DIRS))
         template = env.get_template('plate_setup/plate_setup_upload_init.html')
         return HttpResponse(template.render(form=myForm))
 
