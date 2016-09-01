@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Talkowski Lab LIMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{{ static }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1 align="center">Sample Protocol Tracking
+            <small>Talkowski Laboratory</small>
+        </h1>
+    </div>
+</div>
+{% block base_block %}
+{% endblock %}
+<body>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <ul class="nav nav-pills nav-justified nav-header">
+                    <li class="active">
+                        {#                <li><a href="/initiateproject/">Project Initiation</a></li>#}
+                        {#                <li><a href="/samplemanifest/">Sample Manifest</a></li>#}
+                    <li class="dropdown navbar-nobg">
+                        <a class="btn btn-info btn-lg " href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">Procedure Request <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/procedurerequest/procedurerequest_download/">Procedure Request Download</a>
+                            </li>
+                            <li><a href="/procedurerequest/procedurerequest_upload/">Procedure Request Upload</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="btn btn-info btn-lg" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">Pull Request <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/pullrequest/pullrequest_download/">Sample Pull Download</a></li>
+                            <li><a href="/pullrequest/pullrequest_upload/">Sample Pull Upload</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="btn btn-info btn-lg " href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-pressed="true" aria-haspopup="true" aria-expanded="false">Plate Setup
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/platesetup/platesetup_download/">Plate Setup Download</a></li>
+                            <li><a href="/platesetup/platesetup_upload/">Plate Setup Upload</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="btn btn-info btn-lg" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">Library Pooling <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/librarypooling/librarypooling_download/">Library Pooling Download</a></li>
+                            <li><a href="/librarypooling/librarypooling_download/">Library Pooling Upload</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="btn btn-info btn-lg" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">Library Making <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/librarymaking/librarymaking_download/">Library Making Download</a></li>
+                            <li><a href="/librarymaking/librarymaking_upload/">Library Making Upload</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Walkup Submission</a></li>
+                    <li><a href="#">Sequencing Metrics</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<body>
+{% block body_block %}{% endblock %}
+</body>
+</html>

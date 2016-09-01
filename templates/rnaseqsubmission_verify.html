@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <h1> Verify Project initiation </h1>
+    <title>Python Programming Tutorials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ static }}">
+    <table>
+        {% for item in context %}
+            <tr>
+                <td>{{ item }} </td>
+                <td>{{ context[item] }}</td>
+            </tr>       {% endfor %}
+
+    </table>
+    <form method="post">
+        <input type="submit" value="Click to Submit"/>
+    </form>
+</head>
+</html>

@@ -1,0 +1,16 @@
+{% extends "baseforms.html" %}
+
+{% block body_block %}
+
+    <form method="post">
+        <table>
+            {% for item in form %}
+                <tr>
+                    <th>{{ item.label }} </th>
+                    <td>{{ item }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}

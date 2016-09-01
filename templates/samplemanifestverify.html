@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <h1> Verify Project initiation </h1>
+    <title>Python Programming Tutorials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ static }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="//cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf8" src=//code.jquery.com/jquery-1.12.3.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src=//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+</head>
+
+
+<body>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+This is the Project Information
+<table id="project info" class="table table-striped table-bordered" cellspacing="0" width="20%">
+    <thead>
+    <tr>
+        <th></th>
+    </tr>
+    </thead>
+    {% for item in formDat %}
+        <tr>
+            <td>{{ item }} </td>
+            <td>{{ formDat[item] }}</td>
+        </tr>       {% endfor %}
+</table>
+<div></div>
+This is the data uploaded
+<table id="Sample Manifest" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        {% for item in valDat[0].keys() %}
+
+            <th>
+                {{ item }}
+            </th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in valDat %}
+        <tr>
+            {% for val in item.keys() %}
+
+                <td>{{ item[val] }}</td>
+            {% endfor %}
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+
+<div>
+    <body>
+    <form method="post">
+        <input type="submit" value="Click to Submit"/>
+    </form>
+    </body>
+</div>
+</html>

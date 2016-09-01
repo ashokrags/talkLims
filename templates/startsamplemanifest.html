@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+    <h1> sample Manifest</h1>
+    <form method="post" enctype="multipart/form-data">
+        <table>
+            {% for item in form %}
+                <tr>
+                    <td>{{ item.label }} </td>
+                    <td>{{ item }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}
