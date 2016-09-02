@@ -1,24 +1,23 @@
-{% extends "baseforms.html" %}
+{% extends "base.html" %}
 
 {% block body_block %}
     <div class="page-header"><h1 align="center">Plate Setup Upload</h1></div>
 
-    <form method="post" enctype="multipart/form-data">
-        {#    <table id="project-request" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead> <tr> Procedure Request form</tr></thead>
-    <tbody>#}
-        {% for item in form %}
-            {#               <tr> <th>#}
-            <div class="col-lg-10"
+    <form method="post" enctype="multipart/form-data" class="form-horizontal bg-success">
 
-            {{ item.label }} </div>
-            {#               </th><td>#}
-            <div class="col-lg-10">
-                {{ item }}</div>
-            {#               </td></tr>#}
+        {% for item in form %}
+            <div class="form-group form-group-lg">
+                <label class="control-label ">
+                    {{ item.label }}
+                </label>
+            </div>
+
+            <div class="form-group form-group-lg">
+                {{ item }}
+            </div>
         {% endfor %}
-        {#       </tbody>
-    </table>#}
-        <input type="submit" value="Submit"/>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-info">Upload</button>
+        </div>
     </form>
 {% endblock %}
