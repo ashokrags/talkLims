@@ -129,6 +129,7 @@ def update_db_temp(xls_file):
 
         samples = []
         cell_first = True
+        cell_other = False
         for cell in row:
             if cell.value is not None:
                 samples.append(cell.value)

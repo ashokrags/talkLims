@@ -134,9 +134,10 @@ def update_excel(data):
             ws[cell_id[1]] = well_col[col_cntr] + str(row_cntr).zfill(2)
             col_cntr = col_cntr + 1
 
-            if col_cntr > len(well_col) + 1:
+            if col_cntr > len(well_col):
                 col_cntr = 0
                 row_cntr = row_cntr + 1
+
             ws[cell_id[2]] = pull_info[i]['barcode_id']
 
             ws[cell_id[4]] = pull_info[i]['sample_name']
