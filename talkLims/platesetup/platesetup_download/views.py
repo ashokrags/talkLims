@@ -121,23 +121,25 @@ def update_excel(data):
         col_cntr = 0
         row_cntr = 1
         form_est_dilution = ''
+        replace_cell_row = 34
+
         form_dil_conc = ''
         form_agilent_corr_ng_per_ul = ''
         form_ul_for_desired_amount = ''
         form_water_to_49_ul = ''
-
+        cell_row_cnt = 0
         for i in range(0, len(pull_info)):
             cell_id = []
             for j in range(0, len(cols)):
                 cell_id.append(cols[j] + str(start_cell + i))
             ws[cell_id[0]] = i + 1
-            ws[cell_id[1]] = well_col[col_cntr] + str(row_cntr).zfill(2)
             col_cntr = col_cntr + 1
 
-            if col_cntr > len(well_col):
+            if col_cntr > len(well_col) - 1q:
                 col_cntr = 0
                 row_cntr = row_cntr + 1
 
+            ws[cell_id[1]] = well_col[col_cntr] + str(row_cntr).zfill(2)
             ws[cell_id[2]] = pull_info[i]['barcode_id']
 
             ws[cell_id[4]] = pull_info[i]['sample_name']
@@ -147,7 +149,6 @@ def update_excel(data):
             # Form ws[cell_id[7]] = plate_info[i]['est_dilution']
             if i == 0:
                 form_est_dilution = ws[cell_id[7]].value
-
             else:
                 ws[cell_id[7]] = form_est_dilution
 
@@ -157,7 +158,7 @@ def update_excel(data):
             if i == 0:
                 form_dil_conc = ws[cell_id[9]].value
             else:
-                ws[cell_id[9]] = form_dil_conc
+                ws[cell_id[9]] = form_dil_conc.replace('34', str(replace_cell_row + cell_row_cnt))
 
             ##ws[cell_id[10]] = plate_info[i]['rna_rin']
             ##ws[cell_id[11]] = plate_info[i]['ribo_28S_16S']
@@ -167,20 +168,20 @@ def update_excel(data):
             if i == 0:
                 form_agilent_corr_ng_per_ul = ws[cell_id[13]].value
             else:
-                ws[cell_id[13]] = form_agilent_corr_ng_per_ul
+                ws[cell_id[13]] = form_agilent_corr_ng_per_ul.replace('34', str(replace_cell_row + cell_row_cnt))
 
             ##ws[cell_id[14]] = plate_info[i]['conc_to_use']
             # formws[cell_id[15]] = plate_info[i]['ul_for_desired_amount']
             if i == 0:
                 form_ul_for_desired_amount = ws[cell_id[15]].value
             else:
-                ws[cell_id[15]] = form_ul_for_desired_amount
+                ws[cell_id[15]] = form_ul_for_desired_amount.replace('34', str(replace_cell_row + cell_row_cnt))
 
             # formws[cell_id[16]] = plate_info[i]['water_to_49_ul']
             if i == 0:
                 form_water_to_49_ul = ws[cell_id[16]].value
             else:
-                ws[cell_id[16]] = form_water_to_49_ul
+                ws[cell_id[16]] = form_water_to_49_ul.replace('34', str(replace_cell_row + cell_row_cnt))
                 ##ws[cell_id[17]] = plate_info[i]['ercc']
                 ##ws[cell_id[18]] = plate_info[i]['comments']
 

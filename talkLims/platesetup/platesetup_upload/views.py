@@ -57,7 +57,7 @@ def update_platessetup_db(xls_file):
     for cell in ws['P5':'P29']:
         print cell
         if cell[0].value is not None:
-            agilent_urls.append(cell.value)
+            agilent_urls.append(cell[0].value)
         else:
             break
 
@@ -86,15 +86,15 @@ def update_platessetup_db(xls_file):
                     val = int((float(row[5].value) / 100) + 0.5)
                     ##print cell.value, val
                     samples.append(val)
-                elif isinstance(cell.value, basestring) and cell.value.find('=F34/I34') > -1:
+                elif isinstance(cell.value, basestring) and cell.value.find('=F3') and cell.value.find('/I3') > -1:
                     val = int(row[5].value) / float(row[8].value)
                     ##print cell.value, val
                     samples.append(val)
-                elif isinstance(cell.value, basestring) and cell.value.find('=M34*I34') > -1:
+                elif isinstance(cell.value, basestring) and cell.value.find('=M3') and cell.value.find('*I3') > -1:
                     val = float(row[8].value) * float(row[12].value)
                     ##print cell.value, val
                     samples.append(val)
-                elif isinstance(cell.value, basestring) and cell.value.find('P34') > -1:
+                elif isinstance(cell.value, basestring) and cell.value.find('P3') > -1:
                     val = 49 - float(row[15].value)
                     ##print cell.value, val
                     samples.append(val)
