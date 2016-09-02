@@ -118,7 +118,9 @@ class PlateSetup(models.Model):
     comments = models.TextField(null=True)
 
 
-class librarymaking(models.Model):
+class LibraryMaking(models.Model):
+    plate_id = models.CharField(max_length=100)
+
     day1_date = models.CharField(max_length=100, null=True)
     day1_comments = models.TextField(null=True)
     day2_date = models.CharField(max_length=100, null=True)
@@ -151,6 +153,12 @@ class librarymaking(models.Model):
     step_4_adenylate_3_pr_ends = models.TextField(null=True)
     step_5_enrich_dna_fragments = models.TextField(null=True)
     wash_rbp = models.TextField(null=True)
+
+
+class LibraryMaking_barcodes(models.Model):
+    plate_id = models.CharField(max_length=100)
+    plate_sample_number = models.IntegerField(null=True)
+    barcode_location = models.CharField(max_length=5)
 
 
 class Pool(models.Model):
