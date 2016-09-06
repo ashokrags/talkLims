@@ -194,3 +194,4 @@ def update_excel(data):
 
     wb.save(output)
     return output
+
