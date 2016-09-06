@@ -7,6 +7,8 @@ __status__ = "Production"
 
 import StringIO
 import datetime
+import logging
+import os
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -90,6 +92,8 @@ def db_proj_params(data):
 
 
 def update_excel(data):
+    logging.basicConfig(filename=os.path.join(EXCELFILES_FOLDER, 'debug.log'), level=logging.DEBUG)
+
     proj_info, req_info, pull_info = db_proj_params(data)
     if data['mult_requests']:
         print "do nothing"
@@ -135,7 +139,7 @@ def update_excel(data):
             ws[cell_id[0]] = i + 1
             col_cntr = col_cntr + 1
 
-            if col_cntr > len(well_col) - 1q:
+            if col_cntr > len(well_col) - 1:
                 col_cntr = 0
                 row_cntr = row_cntr + 1
 
@@ -150,7 +154,7 @@ def update_excel(data):
             if i == 0:
                 form_est_dilution = ws[cell_id[7]].value
             else:
-                ws[cell_id[7]] = form_est_dilution
+                ws[cell_id[7]] = form_est_dilution.replace('34', str(replace_cell_row + cell_row_cnt))
 
             ##ws[cell_id[8]] = plate_info[i]['dilution_for_agilent']
 
@@ -169,14 +173,14 @@ def update_excel(data):
                 form_agilent_corr_ng_per_ul = ws[cell_id[13]].value
             else:
                 ws[cell_id[13]] = form_agilent_corr_ng_per_ul.replace('34', str(replace_cell_row + cell_row_cnt))
-
+                logging.info(ws[cell_id[13]])
             ##ws[cell_id[14]] = plate_info[i]['conc_to_use']
             # formws[cell_id[15]] = plate_info[i]['ul_for_desired_amount']
             if i == 0:
                 form_ul_for_desired_amount = ws[cell_id[15]].value
             else:
                 ws[cell_id[15]] = form_ul_for_desired_amount.replace('34', str(replace_cell_row + cell_row_cnt))
-
+                logging.info(ws[cell_id[15]])
             # formws[cell_id[16]] = plate_info[i]['water_to_49_ul']
             if i == 0:
                 form_water_to_49_ul = ws[cell_id[16]].value
@@ -185,6 +189,7 @@ def update_excel(data):
                 ##ws[cell_id[17]] = plate_info[i]['ercc']
                 ##ws[cell_id[18]] = plate_info[i]['comments']
             cell_row_cnt = cell_row_cnt + 1
+
         output = StringIO.StringIO()
 
     wb.save(output)
