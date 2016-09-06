@@ -184,7 +184,7 @@ def update_excel(data):
                 ws[cell_id[16]] = form_water_to_49_ul.replace('34', str(replace_cell_row + cell_row_cnt))
                 ##ws[cell_id[17]] = plate_info[i]['ercc']
                 ##ws[cell_id[18]] = plate_info[i]['comments']
-
+            cell_row_cnt = cell_row_cnt + 1
         output = StringIO.StringIO()
 
     wb.save(output)
