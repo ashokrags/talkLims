@@ -165,16 +165,3 @@ class Pool(models.Model):
     pool_id = models.CharField(max_length=100)
 
 
-### Tables Deprecated
-
-class SampleManifest(models.Model):
-    sample_id = models.CharField(max_length=100)
-    sample_name = models.CharField(max_length=100)
-    sample_replicate = models.IntegerField()
-    sample_species = models.CharField(max_length=100)
-    sample_type = models.CharField(max_length=100)
-    sample_conc = models.FloatField(null=True)
-    sample_amount = models.FloatField(null=True)
-    project_id = models.CharField(max_length=100)
-    other = models.TextField()
-    desc = models.TextField()
